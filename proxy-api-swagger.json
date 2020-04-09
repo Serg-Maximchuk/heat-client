@@ -136,7 +136,7 @@
 "200": {
 "description": "OK",
 "schema": {
-"type": "object"
+"$ref": "#/definitions/Value"
 }
 },
 "201": {
@@ -466,6 +466,15 @@
 }
 },
 "title": "TransactionCreate"
+},
+"Value": {
+"type": "object",
+"properties": {
+"value": {
+"type": "string"
+}
+},
+"title": "Value"
 }
 }
 }
