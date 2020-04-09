@@ -1,0 +1,471 @@
+{
+"swagger": "2.0",
+"info": {
+"description": "Api Documentation",
+"version": "1.0",
+"title": "Api Documentation",
+"termsOfService": "urn:tos",
+"contact": {},
+"license": {
+"name": "Apache 2.0",
+"url": "http://www.apache.org/licenses/LICENSE-2.0"
+}
+},
+"host": "localhost:8080",
+"basePath": "/",
+"tags": [
+{
+"name": "proxy-controller",
+"description": "Proxy Controller"
+}
+],
+"paths": {
+"/heat/addressvalidate/{address}": {
+"get": {
+"tags": [
+"proxy-controller"
+],
+"summary": "checkMainAddress",
+"operationId": "checkMainAddressUsingGET",
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "address",
+"in": "path",
+"description": "address",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/Account"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"deprecated": false
+}
+},
+"/heat/adminbalance": {
+"get": {
+"tags": [
+"proxy-controller"
+],
+"summary": "getHotAmount",
+"operationId": "getHotAmountUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/AccountBalance"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"deprecated": false
+}
+},
+"/heat/blockcount": {
+"get": {
+"tags": [
+"proxy-controller"
+],
+"summary": "getBlockCount",
+"operationId": "getBlockCountUsingGET",
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/BlockCount"
+}
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"deprecated": false
+}
+},
+"/heat/createaddress": {
+"post": {
+"tags": [
+"proxy-controller"
+],
+"summary": "getNewAddress",
+"operationId": "getNewAddressUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"type": "object"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"deprecated": false
+}
+},
+"/heat/send": {
+"post": {
+"tags": [
+"proxy-controller"
+],
+"summary": "sendTransaction",
+"operationId": "sendTransactionUsingPOST",
+"consumes": [
+"application/json"
+],
+"produces": [
+"*/*"
+],
+"parameters": [
+{
+"name": "address",
+"in": "query",
+"description": "address",
+"required": true,
+"type": "string"
+},
+{
+"name": "amount",
+"in": "query",
+"description": "amount",
+"required": true,
+"type": "string"
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"schema": {
+"$ref": "#/definitions/TransactionCreate"
+}
+},
+"201": {
+"description": "Created"
+},
+"401": {
+"description": "Unauthorized"
+},
+"403": {
+"description": "Forbidden"
+},
+"404": {
+"description": "Not Found"
+}
+},
+"deprecated": false
+}
+}
+},
+"definitions": {
+"Account": {
+"type": "object",
+"properties": {
+"balance": {
+"type": "string"
+},
+"currentLeasingHeightFrom": {
+"type": "integer",
+"format": "int32"
+},
+"currentLeasingHeightTo": {
+"type": "integer",
+"format": "int32"
+},
+"currentLessee": {
+"type": "string"
+},
+"currentLesseeName": {
+"type": "string"
+},
+"effectiveBalance": {
+"type": "string"
+},
+"guaranteedBalance": {
+"type": "string"
+},
+"id": {
+"type": "string"
+},
+"keyHeight": {
+"type": "integer",
+"format": "int32"
+},
+"lessors": {
+"type": "array",
+"items": {
+"$ref": "#/definitions/Lessor"
+}
+},
+"nextLeasingHeightFrom": {
+"type": "integer",
+"format": "int32"
+},
+"nextLeasingHeightTo": {
+"type": "integer",
+"format": "int32"
+},
+"nextLessee": {
+"type": "string"
+},
+"nextLesseeName": {
+"type": "string"
+},
+"publicKey": {
+"type": "string"
+},
+"publicName": {
+"type": "string"
+},
+"unconfirmedBalance": {
+"type": "string"
+}
+},
+"title": "Account"
+},
+"AccountBalance": {
+"type": "object",
+"properties": {
+"asset": {
+"type": "string"
+},
+"balance": {
+"type": "string"
+},
+"decimals": {
+"type": "integer",
+"format": "int32"
+},
+"properties": {
+"type": "string"
+},
+"unconfirmedBalance": {
+"type": "string"
+},
+"virtualBalance": {
+"type": "string"
+}
+},
+"title": "AccountBalance"
+},
+"BlockCount": {
+"type": "object",
+"properties": {
+"blockCount": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "BlockCount"
+},
+"Lessor": {
+"type": "object",
+"properties": {
+"currentHeightFrom": {
+"type": "integer",
+"format": "int32"
+},
+"currentHeightTo": {
+"type": "integer",
+"format": "int32"
+},
+"currentLessee": {
+"type": "string"
+},
+"effectiveBalance": {
+"type": "string"
+},
+"id": {
+"type": "string"
+},
+"nextHeightFrom": {
+"type": "integer",
+"format": "int32"
+},
+"nextHeightTo": {
+"type": "integer",
+"format": "int32"
+},
+"nextLessee": {
+"type": "string"
+}
+},
+"title": "Lessor"
+},
+"Transaction": {
+"type": "object",
+"properties": {
+"amount": {
+"type": "string"
+},
+"attachment": {
+"type": "object"
+},
+"block": {
+"type": "string"
+},
+"blockTimestamp": {
+"type": "integer",
+"format": "int32"
+},
+"confirmations": {
+"type": "integer",
+"format": "int32"
+},
+"deadline": {
+"type": "integer",
+"format": "int32"
+},
+"ecBlockHeight": {
+"type": "integer",
+"format": "int32"
+},
+"ecBlockId": {
+"type": "string"
+},
+"fee": {
+"type": "string"
+},
+"fullHash": {
+"type": "string"
+},
+"height": {
+"type": "integer",
+"format": "int32"
+},
+"messageBytes": {
+"type": "string"
+},
+"messageIsEncrypted": {
+"type": "boolean"
+},
+"messageIsEncryptedToSelf": {
+"type": "boolean"
+},
+"messageIsText": {
+"type": "boolean"
+},
+"recipient": {
+"type": "string"
+},
+"recipientPublicKey": {
+"type": "string"
+},
+"sender": {
+"type": "string"
+},
+"senderPublicKey": {
+"type": "string"
+},
+"signature": {
+"type": "string"
+},
+"signatureHash": {
+"type": "string"
+},
+"subtype": {
+"type": "integer",
+"format": "int32"
+},
+"timestamp": {
+"type": "integer",
+"format": "int32"
+},
+"transaction": {
+"type": "string"
+},
+"transactionIndex": {
+"type": "integer",
+"format": "int32"
+},
+"type": {
+"type": "integer",
+"format": "int32"
+},
+"version": {
+"type": "integer",
+"format": "int32"
+}
+},
+"title": "Transaction"
+},
+"TransactionCreate": {
+"type": "object",
+"properties": {
+"broadcasted": {
+"type": "boolean"
+},
+"fullHash": {
+"type": "string"
+},
+"signatureHash": {
+"type": "string"
+},
+"transaction": {
+"type": "string"
+},
+"transactionBytes": {
+"type": "string"
+},
+"transactionJSON": {
+"$ref": "#/definitions/Transaction"
+},
+"unsignedTransactionBytes": {
+"type": "string"
+}
+},
+"title": "TransactionCreate"
+}
+}
+}
